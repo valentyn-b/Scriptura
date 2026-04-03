@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DataAccess
 {
-    public class HTRDbContext : DbContext, IHTRDbContext
+    public class ScripturaDbContext : DbContext, IHTRDbContext
     {
         public DbSet<InFile> InFile { get; set; }
         public DbSet<RecognitionModel> RecognitionModel { get; set; }
@@ -15,9 +15,9 @@ namespace DataAccess
         public DbSet<User> User { get; set; }
         public DbSet<USRS> USRS { get; set; }
 
-        public HTRDbContext() { }
+        public ScripturaDbContext() { }
 
-        public HTRDbContext(DbContextOptions<HTRDbContext> options) : base(options)
+        public ScripturaDbContext(DbContextOptions<ScripturaDbContext> options) : base(options)
         {
         }
 

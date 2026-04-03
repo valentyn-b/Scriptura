@@ -1,0 +1,8 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Scriptura.Api/Scriptura.Api.csproj" />
+    <Project Path="src/Scriptura.Application/Scriptura.Application.csproj" />
+    <Project Path="src/Scriptura.Domain/Scriptura.Domain.csproj" />
+    <Project Path="src/Scriptura.Infrastructure/Scriptura.Infrastructure.csproj" />
+  </Folder>
+</Solution>

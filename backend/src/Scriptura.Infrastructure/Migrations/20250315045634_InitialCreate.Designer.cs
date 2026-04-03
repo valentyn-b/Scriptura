@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DataAccess.Migrations
 {
-    [DbContext(typeof(HTRDbContext))]
+    [DbContext(typeof(ScripturaDbContext))]
     [Migration("20250315045634_InitialCreate")]
     partial class InitialCreate
     {

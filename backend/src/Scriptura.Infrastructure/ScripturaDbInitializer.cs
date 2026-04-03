@@ -2,9 +2,9 @@
 
 namespace DataAccess
 {
-    public static class HTRDbInitializer
+    public static class ScripturaDbInitializer
     {
-        public static void Initialize(HTRDbContext context)
+        public static void Initialize(ScripturaDbContext context)
         {
             if (context.Database.ProviderName != "Microsoft.EntityFrameworkCore.InMemory")
             {
@@ -14,7 +14,7 @@ namespace DataAccess
             // SeedDatabase(context);
         }
 
-        public static void SeedDatabase(HTRDbContext context)
+        public static void SeedDatabase(ScripturaDbContext context)
         {
 
         }
