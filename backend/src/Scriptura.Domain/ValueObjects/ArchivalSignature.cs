@@ -1,0 +1,30 @@
+﻿namespace Scriptura.Domain.ValueObjects
+{
+    public record ArchivalSignature
+    {
+        public string ArchiveCode { get; set; }
+        public string Fond { get; set; }
+        public string Inventory { get; set; }
+        public string ItemNumber { get; set; }
+
+        public ArchivalSignature(string archiveCode, string fond, string inventory, string itemNumber)
+        {
+            if(string.IsNullOrWhiteSpace(archiveCode))
+                throw new ArgumentException("Archive code cannot be empty.", nameof(archiveCode));
+
+            if (string.IsNullOrWhiteSpace(fond))
+                throw new ArgumentException("Fond number cannot be empty.", nameof(fond));
+
+            if (string.IsNullOrWhiteSpace(inventory))
+                throw new ArgumentException("Inventory number cannot be empty.", nameof(inventory));
+
+            if (string.IsNullOrWhiteSpace(itemNumber))
+                throw new ArgumentException("Item number cannot be empty.", nameof(itemNumber));
+
+            ArchiveCode = archiveCode;
+            Fond = fond;
+            Inventory = inventory;
+            ItemNumber = itemNumber;
+        }
+    }
+}
