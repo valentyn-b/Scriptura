@@ -2,9 +2,9 @@
 {
     public record HistoricalDivision
     {
-        public string? Governorate { get; set; }
-        public string? County { get; set; }
-        public string? Parish { get; set; }
+        public string? Governorate { get; init; }
+        public string? County { get; init; }
+        public string? Parish { get; init; }
 
         public HistoricalDivision(string governorate, string county, string parish)
         {

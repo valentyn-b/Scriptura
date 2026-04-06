@@ -2,10 +2,10 @@
 {
     public record ArchivalSignature
     {
-        public string ArchiveCode { get; set; }
-        public string Fond { get; set; }
-        public string Inventory { get; set; }
-        public string ItemNumber { get; set; }
+        public string ArchiveCode { get; init; }
+        public string Fond { get; init; }
+        public string Inventory { get; init; }
+        public string ItemNumber { get; init; }
 
         public ArchivalSignature(string archiveCode, string fond, string inventory, string itemNumber)
         {
