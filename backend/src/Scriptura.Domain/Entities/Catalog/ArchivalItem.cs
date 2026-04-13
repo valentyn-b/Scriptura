@@ -7,7 +7,7 @@ namespace Scriptura.Domain.Entities.Catalog
 {
     public class ArchivalItem : AggregateRoot
     {
-        private readonly List<Guid> _settlementsIds = [];
+        private readonly List<Guid> _settlementIds = [];
         private readonly List<Scan> _scans = [];
 
         private ArchivalItem()
@@ -28,7 +28,7 @@ namespace Scriptura.Domain.Entities.Catalog
         public RecordType Type { get; private set; }
         public DateRange? CoveredYears { get; private set; }
 
-        public IReadOnlyList<Guid> SettlementIds => _settlementsIds;
+        public IReadOnlyList<Guid> SettlementIds => _settlementIds;
         public IReadOnlyList<Scan> Scans => _scans;
 
         public static ArchivalItem Create(ArchivalSignature signature, string title, RecordType type, DateRange? coveredYears = null)
@@ -51,8 +51,8 @@ namespace Scriptura.Domain.Entities.Catalog
             if(settlementId == Guid.Empty)
                 throw new ArgumentException("Settlement ID cannot be empty.");
 
-            if (!_settlementsIds.Contains(settlementId))
-                _settlementsIds.Add(settlementId);
+            if (!_settlementIds.Contains(settlementId))
+                _settlementIds.Add(settlementId);
         }
 
         public void AddScan(Scan scan)
