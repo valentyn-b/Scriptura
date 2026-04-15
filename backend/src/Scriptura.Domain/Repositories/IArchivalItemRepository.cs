@@ -6,7 +6,7 @@ namespace Scriptura.Domain.Repositories
     {
         Task<ArchivalItem?> GetByIdWithScansAsync(Guid id, CancellationToken cancellationToken = default);
 
-        Task AddAsync(ArchivalItem item, CancellationToken cancellationToken = default);
+        void Add(ArchivalItem item);        
 
         Task SaveChangesAsync(CancellationToken cancellationToken = default);
     }

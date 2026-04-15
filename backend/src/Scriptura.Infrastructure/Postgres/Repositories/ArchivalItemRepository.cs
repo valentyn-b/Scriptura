@@ -13,9 +13,9 @@ internal sealed class ArchivalItemRepository(ScripturaDbContext dbContext) : IAr
             .FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
     }
 
-    public async Task AddAsync(ArchivalItem item, CancellationToken cancellationToken = default)
+    public void Add(ArchivalItem item)
     {
-        await dbContext.Set<ArchivalItem>().AddAsync(item, cancellationToken);
+        dbContext.Set<ArchivalItem>().Add(item);
     }
 
     public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
