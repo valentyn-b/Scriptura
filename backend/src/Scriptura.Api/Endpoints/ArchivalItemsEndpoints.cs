@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Scriptura.Api.Contracts;
+using Scriptura.Domain.Entities.Catalog;
+using Scriptura.Domain.Enums;
 using Scriptura.Domain.Repositories;
+using Scriptura.Domain.ValueObjects;
 
 namespace Scriptura.Api.Endpoints;
 
@@ -11,8 +14,39 @@ public static class ArchivalItemsEndpoints
         var group = app.MapGroup("/api/archival-items")
                        .WithTags("Archival Items");
 
+        group.MapPost("/", CreateArchivalItem);
         group.MapGet("/{id:guid}", GetArchivalItemById);
-    }    
+    }
+
+    private static async Task<IResult> CreateArchivalItem(
+        [FromBody] CreateArchivalItemRequest request,
+        [FromServices] IArchivalItemRepository repository,
+        CancellationToken cancellationToken)
+    {
+        if (!Enum.TryParse<RecordType>(request.Type, ignoreCase: true, out var recordType))
+        {
+            return Results.BadRequest(new { Message = $"Invalid record type: '{request.Type}'. Allowed values depend on your RecordType enum." });
+        }
+
+        var signature = new ArchivalSignature(
+            request.ArchiveCode,
+            request.Fond,
+            request.Inventory,
+            request.ItemNumber);
+
+        var item = ArchivalItem.Create(signature, request.Title, recordType);
+
+        repository.Add(item);
+        await repository.SaveChangesAsync(cancellationToken);
+
+        var response = new ArchivalItemResponse(
+            item.Id,
+            item.Title,
+            $"{item.Signature.ArchiveCode} {item.Signature.Fond}-{item.Signature.Inventory}-{item.Signature.ItemNumber}",
+            item.Type.ToString());
+
+        return Results.Created($"/api/archival-items/{item.Id}", response);
+    }
 
     private static async Task<IResult> GetArchivalItemById(
         Guid id,
