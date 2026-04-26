@@ -17,6 +17,7 @@ public static class DependencyInjection
             options.UseNpgsql(configuration.GetConnectionString("PostgresConnection")));
 
         services.AddScoped<IArchivalItemRepository, ArchivalItemRepository>();
+        services.AddScoped<ISettlementRepository, SettlementRepository>();
 
         return services;
     }

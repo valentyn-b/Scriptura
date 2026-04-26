@@ -1,0 +1,18 @@
+﻿using Microsoft.EntityFrameworkCore;
+using Scriptura.Domain.Entities.Catalog;
+using Scriptura.Domain.Repositories;
+
+namespace Scriptura.Infrastructure.Postgres.Repositories;
+
+internal sealed class SettlementRepository(ScripturaDbContext dbContext)
+    : PostgresRepositoryBase(dbContext), ISettlementRepository
+{
+    public Task<Settlement?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+        => DbContext.Set<Settlement>().FirstOrDefaultAsync(x => x.Id == id, cancellationToken);
+
+    public void Add(Settlement settlement)
+        => DbContext.Set<Settlement>().Add(settlement);
+
+    public Task SaveChangesAsync(CancellationToken cancellationToken = default)
+        => DbContext.SaveChangesAsync(cancellationToken);
+}
