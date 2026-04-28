@@ -1,22 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Scriptura.Domain.Repositories;
+using Scriptura.Api.Contracts;
 
 namespace Scriptura.Api.Endpoints;
-
-public record CreateSettlementRequest(
-    string CurrentName,
-    string Type,
-    string? ModernRegion = null,
-    string? ModernDistrict = null,
-    string? ModernCommunity = null
-);
-
-public record SettlementResponse(
-    Guid Id,
-    string CurrentName,
-    string Type,
-    string? ModernRegion
-);
 
 public static class SettlementsEndpoints
 {
